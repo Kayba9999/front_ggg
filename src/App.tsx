@@ -21,6 +21,7 @@ import AdminProfessors from "./components/admin/AdminProfessors";
 import AdminLanguages from "./components/admin/AdminLanguages";
 import AdminUsers from "./components/admin/AdminUsers";
 import AdminCourses from "./components/admin/AdminCourses";
+import AdminSettings from "./components/admin/AdminSettings";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="languages" element={<AdminLanguages />} />
             <Route path="users" element={<AdminUsers />} />
             <Route path="courses" element={<AdminCourses />} />
+            <Route path="settings" element={<AdminSettings />} />
           </Route>
           
           {/* 404 route */}
