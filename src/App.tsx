@@ -13,6 +13,12 @@ import WhatsAppPage from "./pages/WhatsAppPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
+// Admin pages
+import AdminDashboardPage from "./pages/AdminDashboardPage";
+import AdminDashboardOverview from "./components/admin/AdminDashboardOverview";
+import AdminProfessors from "./components/admin/AdminProfessors";
+import AdminLanguages from "./components/admin/AdminLanguages";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -22,6 +28,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Main site routes */}
           <Route path="/" element={<Index />} />
           <Route path="/professors" element={<ProfessorsPage />} />
           <Route path="/professors/:id" element={<ProfessorDetailPage />} />
@@ -29,6 +36,16 @@ const App = () => (
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/whatsapp" element={<WhatsAppPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          
+          {/* Admin routes */}
+          <Route path="/admin" element={<AdminDashboardPage />}>
+            <Route index element={<AdminDashboardOverview />} />
+            <Route path="professors" element={<AdminProfessors />} />
+            <Route path="languages" element={<AdminLanguages />} />
+            {/* Add more admin routes as needed */}
+          </Route>
+          
+          {/* 404 route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
