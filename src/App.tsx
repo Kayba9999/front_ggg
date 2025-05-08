@@ -22,6 +22,8 @@ import AdminLanguages from "./components/admin/AdminLanguages";
 import AdminUsers from "./components/admin/AdminUsers";
 import AdminCourses from "./components/admin/AdminCourses";
 import AdminSettings from "./components/admin/AdminSettings";
+import AddUserPage from "./pages/admin/AddUserPage";
+import AddCoursePage from "./pages/admin/AddCoursePage";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +54,8 @@ const App = () => (
             <Route path="users" element={<AdminUsers />} />
             <Route path="courses" element={<AdminCourses />} />
             <Route path="settings" element={<AdminSettings />} />
+            <Route path="add-user" element={<AddUserPage />} />
+            <Route path="add-course" element={<AddCoursePage />} />
           </Route>
           
           {/* 404 route */}

@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   Table, 
   TableHeader, 
@@ -22,6 +23,8 @@ const courses = [
 ];
 
 const AdminCourses = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -34,7 +37,7 @@ const AdminCourses = () => {
               className="pl-8 rtl:pr-8 rtl:pl-3"
             />
           </div>
-          <Button>
+          <Button onClick={() => navigate("/admin/add-course")}>
             <BookOpen className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
             إضافة دورة
           </Button>
