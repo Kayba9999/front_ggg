@@ -12,12 +12,15 @@ import RegistrationPage from "./pages/RegistrationPage";
 import WhatsAppPage from "./pages/WhatsAppPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
+import AdminLoginPage from "./pages/AdminLoginPage";
 
 // Admin pages
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import AdminDashboardOverview from "./components/admin/AdminDashboardOverview";
 import AdminProfessors from "./components/admin/AdminProfessors";
 import AdminLanguages from "./components/admin/AdminLanguages";
+import AdminUsers from "./components/admin/AdminUsers";
+import AdminCourses from "./components/admin/AdminCourses";
 
 const queryClient = new QueryClient();
 
@@ -37,12 +40,16 @@ const App = () => (
           <Route path="/whatsapp" element={<WhatsAppPage />} />
           <Route path="/contact" element={<ContactPage />} />
           
+          {/* Admin login route */}
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          
           {/* Admin routes */}
           <Route path="/admin" element={<AdminDashboardPage />}>
             <Route index element={<AdminDashboardOverview />} />
             <Route path="professors" element={<AdminProfessors />} />
             <Route path="languages" element={<AdminLanguages />} />
-            {/* Add more admin routes as needed */}
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="courses" element={<AdminCourses />} />
           </Route>
           
           {/* 404 route */}
