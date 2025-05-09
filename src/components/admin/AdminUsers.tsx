@@ -65,7 +65,13 @@ const AdminUsers = () => {
                 <TableCell>{user.phone}</TableCell>
                 <TableCell>{user.registrationDate}</TableCell>
                 <TableCell className="flex gap-2">
-                  <Button variant="outline" size="sm">تعديل</Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => navigate(`/admin/edit-user/${user.id}`)}
+                  >
+                    تعديل
+                  </Button>
                   <Button variant="destructive" size="sm">حذف</Button>
                 </TableCell>
               </TableRow>

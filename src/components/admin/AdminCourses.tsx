@@ -67,7 +67,13 @@ const AdminCourses = () => {
                 <TableCell>{course.students}</TableCell>
                 <TableCell>{course.startDate}</TableCell>
                 <TableCell className="flex gap-2">
-                  <Button variant="outline" size="sm">تعديل</Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => navigate(`/admin/edit-course/${course.id}`)}
+                  >
+                    تعديل
+                  </Button>
                   <Button variant="destructive" size="sm">حذف</Button>
                 </TableCell>
               </TableRow>

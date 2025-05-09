@@ -24,6 +24,10 @@ import AdminCourses from "./components/admin/AdminCourses";
 import AdminSettings from "./components/admin/AdminSettings";
 import AddUserPage from "./pages/admin/AddUserPage";
 import AddCoursePage from "./pages/admin/AddCoursePage";
+import EditUserPage from "./pages/admin/EditUserPage";
+import EditCoursePage from "./pages/admin/EditCoursePage";
+import EditProfessorPage from "./pages/admin/EditProfessorPage";
+import EditLanguagePage from "./pages/admin/EditLanguagePage";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +60,10 @@ const App = () => (
             <Route path="settings" element={<AdminSettings />} />
             <Route path="add-user" element={<AddUserPage />} />
             <Route path="add-course" element={<AddCoursePage />} />
+            <Route path="edit-user/:id" element={<EditUserPage />} />
+            <Route path="edit-course/:id" element={<EditCoursePage />} />
+            <Route path="edit-professor/:id" element={<EditProfessorPage />} />
+            <Route path="edit-language/:id" element={<EditLanguagePage />} />
           </Route>
           
           {/* 404 route */}

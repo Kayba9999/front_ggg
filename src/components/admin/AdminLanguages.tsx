@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   Card, 
   CardContent, 
@@ -29,6 +30,7 @@ interface LanguageFormValues {
 }
 
 const AdminLanguages = () => {
+  const navigate = useNavigate();
   const [isAddSheetOpen, setIsAddSheetOpen] = useState(false);
   
   const form = useForm<LanguageFormValues>({
@@ -142,7 +144,11 @@ const AdminLanguages = () => {
                   <TableCell>{language.name}</TableCell>
                   <TableCell>{language.nativeName}</TableCell>
                   <TableCell className="flex space-x-2">
-                    <Button variant="ghost" size="icon">
+                    <Button 
+                      variant="ghost" 
+                      size="icon"
+                      onClick={() => navigate(`/admin/edit-language/${language.id}`)}
+                    >
                       <Pencil className="h-4 w-4" />
                       <span className="sr-only">تعديل</span>
                     </Button>

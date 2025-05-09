@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   Card, 
   CardContent, 
@@ -34,6 +35,7 @@ interface ProfessorFormValues {
 }
 
 const AdminProfessors = () => {
+  const navigate = useNavigate();
   const [isAddSheetOpen, setIsAddSheetOpen] = useState(false);
   
   const form = useForm<ProfessorFormValues>({
@@ -186,7 +188,11 @@ const AdminProfessors = () => {
                   <TableCell>{professor.language}</TableCell>
                   <TableCell>{professor.title}</TableCell>
                   <TableCell className="flex space-x-2">
-                    <Button variant="ghost" size="icon">
+                    <Button 
+                      variant="ghost" 
+                      size="icon"
+                      onClick={() => navigate(`/admin/edit-professor/${professor.id}`)}
+                    >
                       <Pencil className="h-4 w-4" />
                       <span className="sr-only">تعديل</span>
                     </Button>
