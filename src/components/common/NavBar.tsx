@@ -57,7 +57,7 @@ const NavBar = () => {
               <Link to="/register">{t('button.register')}</Link>
             </Button>
             
-            {/* Language switcher dropdown moved to the end of navbar */}
+            {/* Language switcher dropdown */}
             <LanguageSwitcher />
           </div>
 

@@ -1,16 +1,21 @@
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import WhatsAppForm from "@/components/whatsapp/WhatsAppForm";
 import NavBar from "@/components/common/NavBar";
 import Footer from "@/components/common/Footer";
 
 const WhatsAppPage = () => {
+  const { t, dir } = useLanguage();
+
   return (
     <div>
       <NavBar />
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold text-center mb-6 rtl">تواصل معنا عبر واتساب</h1>
+      <div className="container mx-auto px-4 py-12" dir={dir}>
+        <h1 className="text-3xl font-bold text-center mb-6 rtl">
+          {t('whatsapp.title')}
+        </h1>
         <p className="text-center text-gray-600 mb-12 rtl max-w-2xl mx-auto">
-          يمكنك التواصل معنا بسهولة عبر واتساب للاستفسار عن الدورات اللغوية أو للتسجيل في دورة معينة.
+          {t('whatsapp.description')}
         </p>
         
         <div className="flex justify-center">

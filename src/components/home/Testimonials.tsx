@@ -1,13 +1,18 @@
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { testimonials } from "@/data/testimonials";
 
 const Testimonials = () => {
+  const { t, dir } = useLanguage();
+
   return (
-    <div className="bg-academy-green py-16">
+    <div className="bg-academy-green py-16" dir={dir}>
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-white rtl">ماذا يقول طلابنا</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-white rtl">
+          {t('testimonials.title')}
+        </h2>
         
         <Carousel className="w-full max-w-4xl mx-auto">
           <CarouselContent>

@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const LanguagesList = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
   
   const { data: languages, isLoading, error } = useQuery({
     queryKey: ['languages'],
@@ -49,7 +49,7 @@ const LanguagesList = () => {
   }
   
   return (
-    <div className="py-16 bg-gray-50">
+    <div className="py-16 bg-gray-50" dir={dir}>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12 rtl text-academy-green">
           {t('languages.title')}

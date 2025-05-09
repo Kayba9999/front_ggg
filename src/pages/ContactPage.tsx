@@ -1,4 +1,5 @@
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { MapPin, Phone, Mail, MessageSquare } from "lucide-react";
@@ -7,19 +8,24 @@ import Footer from "@/components/common/Footer";
 
 const ContactPage = () => {
   const navigate = useNavigate();
+  const { t, dir } = useLanguage();
 
   return (
     <div>
       <NavBar />
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold text-center mb-6 rtl">تواصل معنا</h1>
+      <div className="container mx-auto px-4 py-12" dir={dir}>
+        <h1 className="text-3xl font-bold text-center mb-6 rtl">
+          {t('contact.title')}
+        </h1>
         <p className="text-center text-gray-600 mb-12 rtl max-w-2xl mx-auto">
-          نحن هنا للإجابة على جميع استفساراتك. يمكنك التواصل معنا عبر إحدى الطرق التالية.
+          {t('contact.description')}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="rtl">
-            <h2 className="text-2xl font-bold mb-6 text-academy-green">وسائل الاتصال</h2>
+            <h2 className="text-2xl font-bold mb-6 text-academy-green">
+              {t('contact.methods')}
+            </h2>
             
             <div className="space-y-6">
               <div className="flex items-start space-x-4 space-x-reverse">
@@ -27,7 +33,7 @@ const ContactPage = () => {
                   <Phone className="h-6 w-6 text-academy-green" />
                 </div>
                 <div>
-                  <h3 className="font-bold mb-1">الهاتف</h3>
+                  <h3 className="font-bold mb-1">{t('contact.phone')}</h3>
                   <p className="text-gray-600">+212 612 345 678</p>
                 </div>
               </div>
@@ -37,7 +43,7 @@ const ContactPage = () => {
                   <Mail className="h-6 w-6 text-academy-green" />
                 </div>
                 <div>
-                  <h3 className="font-bold mb-1">البريد الإلكتروني</h3>
+                  <h3 className="font-bold mb-1">{t('contact.email')}</h3>
                   <p className="text-gray-600">info@learnacademy.com</p>
                 </div>
               </div>
@@ -47,7 +53,7 @@ const ContactPage = () => {
                   <MapPin className="h-6 w-6 text-academy-green" />
                 </div>
                 <div>
-                  <h3 className="font-bold mb-1">العنوان</h3>
+                  <h3 className="font-bold mb-1">{t('contact.address')}</h3>
                   <p className="text-gray-600">
                     شارع محمد الخامس، رقم 123، الطابق الثاني، الرباط، المغرب
                   </p>
@@ -59,15 +65,15 @@ const ContactPage = () => {
                   <MessageSquare className="h-6 w-6 text-academy-green" />
                 </div>
                 <div>
-                  <h3 className="font-bold mb-1">واتساب</h3>
+                  <h3 className="font-bold mb-1">{t('contact.whatsapp')}</h3>
                   <p className="text-gray-600 mb-3">
-                    يمكنك التواصل معنا مباشرة عبر واتساب للحصول على رد سريع
+                    {t('contact.whatsapp.desc')}
                   </p>
                   <Button
                     onClick={() => navigate('/whatsapp')}
                     className="bg-academy-green hover:bg-opacity-90"
                   >
-                    مراسلة عبر واتساب
+                    {t('button.whatsapp')}
                   </Button>
                 </div>
               </div>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,6 +21,7 @@ type FormValues = z.infer<typeof formSchema>;
 const WhatsAppForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t, dir } = useLanguage();
   
   const {
     register,
@@ -61,21 +63,21 @@ const WhatsAppForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto" dir={dir}>
       <CardHeader>
         <CardTitle className="rtl text-2xl font-bold text-center">
-          تواصل معنا عبر واتساب
+          {t('whatsapp.form.title')}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 rtl">
           <div className="space-y-2">
             <label htmlFor="name" className="block text-sm font-medium">
-              الاسم
+              {t('whatsapp.form.name')}
             </label>
             <Input
               id="name"
-              placeholder="أدخل اسمك"
+              placeholder={t('whatsapp.form.name')}
               {...register("name")}
               className="w-full"
             />
@@ -86,11 +88,11 @@ const WhatsAppForm = () => {
 
           <div className="space-y-2">
             <label htmlFor="message" className="block text-sm font-medium">
-              الرسالة
+              {t('whatsapp.form.message')}
             </label>
             <Textarea
               id="message"
-              placeholder="أدخل رسالتك هنا..."
+              placeholder={t('whatsapp.form.message')}
               {...register("message")}
               className="w-full h-32"
             />
@@ -104,11 +106,11 @@ const WhatsAppForm = () => {
             className="w-full bg-academy-green hover:bg-opacity-90"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "جاري الإرسال..." : "إرسال عبر الواتساب"}
+            {isSubmitting ? t('whatsapp.form.sending') : t('whatsapp.form.send')}
           </Button>
 
           <p className="text-center text-sm text-gray-500">
-            سيتم فتح تطبيق واتساب تلقائيًا بعد الضغط على الزر
+            {t('whatsapp.form.hint')}
           </p>
         </form>
       </CardContent>

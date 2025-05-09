@@ -1,36 +1,39 @@
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Clock, CreditCard, Users } from "lucide-react";
 
 const Features = () => {
+  const { t, dir } = useLanguage();
+
   const features = [
     {
       icon: <CheckCircle className="h-10 w-10 text-academy-green" />,
-      title: "جودة عالية",
-      description: "أساتذة متخصصون في تدريس اللغات بشهادات معتمدة وخبرات واسعة"
+      title: t('features.quality'),
+      description: t('features.quality.desc')
     },
     {
       icon: <CreditCard className="h-10 w-10 text-academy-green" />,
-      title: "أسعار معقولة",
-      description: "أسعار تنافسية مع خيارات متعددة تناسب مختلف الميزانيات"
+      title: t('features.prices'),
+      description: t('features.prices.desc')
     },
     {
       icon: <Clock className="h-10 w-10 text-academy-green" />,
-      title: "مواعيد مرنة",
-      description: "دورات صباحية ومسائية وعطلة نهاية الأسبوع لتناسب جدولك الزمني"
+      title: t('features.schedule'),
+      description: t('features.schedule.desc')
     },
     {
       icon: <Users className="h-10 w-10 text-academy-green" />,
-      title: "مجموعات صغيرة",
-      description: "عدد محدود من الطلاب في كل مجموعة لضمان الاستفادة القصوى"
+      title: t('features.groups'),
+      description: t('features.groups.desc')
     }
   ];
 
   return (
-    <div className="py-16 bg-white">
+    <div className="py-16 bg-white" dir={dir}>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12 rtl">
-          لماذا تختارنا؟
+          {t('features.whyChooseUs')}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

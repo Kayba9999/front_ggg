@@ -11,7 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 
 const LanguageSwitcher: React.FC = () => {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   const languageOptions: { code: SupportedLanguage, name: string, flag: string }[] = [
     { code: 'ar', name: 'العربية', flag: '🇸🇦' },

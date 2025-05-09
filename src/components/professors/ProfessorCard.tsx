@@ -1,5 +1,6 @@
 
 import { Professor } from "@/types";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +11,10 @@ interface ProfessorCardProps {
 
 const ProfessorCard = ({ professor }: ProfessorCardProps) => {
   const navigate = useNavigate();
+  const { t, dir } = useLanguage();
 
   return (
-    <Card className="overflow-hidden transition-all hover:shadow-lg">
+    <Card className="overflow-hidden transition-all hover:shadow-lg" dir={dir}>
       <div className="aspect-square overflow-hidden">
         <img 
           src={professor.image} 
@@ -27,7 +29,7 @@ const ProfessorCard = ({ professor }: ProfessorCardProps) => {
           onClick={() => navigate(`/professors/${professor.id}`)} 
           className="w-full bg-academy-green hover:bg-opacity-90"
         >
-          تعرف على الأستاذ
+          {t('professors.meetButton')}
         </Button>
       </CardContent>
     </Card>
