@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -26,9 +25,8 @@ const EditProfessorPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   
-  // Find the professor based on ID
-  const professorId = Number(id);
-  const professor = professors.find(prof => prof.id === professorId);
+  // Find the professor based on ID - fixed the type comparison issue
+  const professor = professors.find(prof => prof.id === id);
   
   const form = useForm<ProfessorFormValues>({
     defaultValues: {

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -21,9 +20,8 @@ const EditLanguagePage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   
-  // Find the language based on ID
-  const languageId = Number(id);
-  const language = languages.find(lang => lang.id === languageId);
+  // Find the language based on ID - fixed the type comparison issue
+  const language = languages.find(lang => lang.id === id);
   
   const form = useForm<LanguageFormValues>({
     defaultValues: {
