@@ -34,11 +34,6 @@ const NavBar = () => {
             </Link>
           </div>
           
-          {/* Language switcher - visible on all screen sizes */}
-          <div className="hidden md:block">
-            <LanguageSwitcher />
-          </div>
-
           <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
             {navLinks.map((link) => (
               <Link
@@ -61,6 +56,9 @@ const NavBar = () => {
             >
               <Link to="/register">{t('button.register')}</Link>
             </Button>
+            
+            {/* Language switcher dropdown moved to the end of navbar */}
+            <LanguageSwitcher />
           </div>
 
           <div className="md:hidden flex items-center">

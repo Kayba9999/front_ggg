@@ -62,6 +62,11 @@ const translations: Translations = {
     ar: 'سجل في إحدى دوراتنا',
     en: 'Register for a course',
     es: 'Regístrate en un curso'
+  },
+  'language.select': {
+    ar: 'اختر اللغة',
+    en: 'Select Language',
+    es: 'Seleccionar Idioma'
   }
 };
 
