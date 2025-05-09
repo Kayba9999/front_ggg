@@ -26,6 +26,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { languages } from "@/data/languages";
 import { RegistrationFormData } from "@/types";
 import { sendWhatsAppMessage } from "@/services/whatsappService";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const formSchema = z.object({
   fullName: z.string().min(3, { message: "الاسم الكامل مطلوب" }),
@@ -37,6 +38,15 @@ const formSchema = z.object({
   level: z.string().min(1, { message: "يرجى اختيار المستوى" }),
   language: z.string().min(1, { message: "يرجى اختيار اللغة" }),
   classType: z.string().min(1, { message: "يرجى اختيار نوع الاشتراك" }),
+  // Bank card information
+  cardName: z.string().min(3, { message: "اسم حامل البطاقة مطلوب" }),
+  cardNumber: z.string().min(12, { message: "رقم البطاقة غير صالح" })
+    .max(19, { message: "رقم البطاقة غير صالح" }),
+  cardExpiry: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, { 
+    message: "تاريخ انتهاء البطاقة غير صالح (MM/YY)" 
+  }),
+  cardCvc: z.string().min(3, { message: "رمز CVC غير صالح" }).max(4),
+  saveCardInfo: z.boolean().optional(),
 });
 
 const RegistrationForm = () => {
@@ -54,6 +64,11 @@ const RegistrationForm = () => {
       level: "",
       language: "",
       classType: "",
+      cardName: "",
+      cardNumber: "",
+      cardExpiry: "",
+      cardCvc: "",
+      saveCardInfo: false,
     },
   });
 
@@ -74,6 +89,7 @@ const RegistrationForm = () => {
 المستوى: ${data.level}
 اللغة: ${data.language}
 نوع الاشتراك: ${data.classType}
+معلومات بطاقة الدفع: بطاقة تم تقديمها
       `;
 
       // Send the message via WhatsApp
@@ -107,6 +123,9 @@ const RegistrationForm = () => {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 rtl">
+            {/* Personal Information Section */}
+            <h3 className="text-xl font-semibold mb-4">المعلومات الشخصية</h3>
+            
             <FormField
               control={form.control}
               name="fullName"
@@ -166,6 +185,11 @@ const RegistrationForm = () => {
                 </FormItem>
               )}
             />
+
+            {/* Course Information Section */}
+            <div className="border-t pt-6 mt-6">
+              <h3 className="text-xl font-semibold mb-4">معلومات الدورة</h3>
+            </div>
 
             <FormField
               control={form.control}
@@ -243,6 +267,114 @@ const RegistrationForm = () => {
                     </SelectContent>
                   </Select>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Payment Information Section */}
+            <div className="border-t pt-6 mt-6">
+              <h3 className="text-xl font-semibold mb-4">معلومات الدفع</h3>
+            </div>
+
+            <FormField
+              control={form.control}
+              name="cardName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>اسم حامل البطاقة</FormLabel>
+                  <FormControl>
+                    <Input placeholder="الاسم على البطاقة" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="cardNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>رقم البطاقة</FormLabel>
+                  <FormControl>
+                    <Input 
+                      placeholder="0000 0000 0000 0000" 
+                      {...field}
+                      onChange={(e) => {
+                        // Format card number with spaces for readability
+                        const value = e.target.value.replace(/\s/g, '');
+                        const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
+                        field.onChange(formattedValue);
+                      }}
+                      maxLength={19}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="cardExpiry"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>تاريخ الانتهاء</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="MM/YY" 
+                        {...field}
+                        onChange={(e) => {
+                          // Format expiry date as MM/YY
+                          let value = e.target.value.replace(/[^0-9]/g, '');
+                          if (value.length > 2) {
+                            value = value.slice(0, 2) + '/' + value.slice(2, 4);
+                          }
+                          field.onChange(value);
+                        }}
+                        maxLength={5}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="cardCvc"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>رمز الأمان CVC</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="000" 
+                        {...field}
+                        type="password"
+                        maxLength={4}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <FormField
+              control={form.control}
+              name="saveCardInfo"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 mt-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>حفظ معلومات البطاقة للتسجيل المستقبلي</FormLabel>
+                  </div>
                 </FormItem>
               )}
             />
