@@ -2,7 +2,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { WhatsappIcon } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BankTransferInfo = () => {
@@ -54,7 +54,7 @@ const BankTransferInfo = () => {
             className="bg-green-500 hover:bg-green-600 py-6 px-8 text-lg flex items-center gap-2"
           >
             <Link to="/whatsapp">
-              <WhatsappIcon className="h-6 w-6" />
+              <MessageSquare className="h-6 w-6" />
               {t('register.bankTransfer.contactWhatsApp')}
             </Link>
           </Button>
