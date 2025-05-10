@@ -38,10 +38,5 @@ export interface RegistrationFormData {
   level: string;
   language: string;
   classType: string;
-  // Add card information fields
-  cardName: string;
-  cardNumber: string;
-  cardExpiry: string;
-  cardCvc: string;
-  saveCardInfo: boolean;
 }
+

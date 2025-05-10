@@ -53,6 +53,16 @@ const translations: Translations = {
     en: 'Cancel',
     es: 'Cancelar'
   },
+  'button.registering': {
+    ar: 'جاري التسجيل...',
+    en: 'Registering...',
+    es: 'Registrando...'
+  },
+  'button.submitRegistration': {
+    ar: 'إرسال طلب التسجيل',
+    en: 'Submit Registration',
+    es: 'Enviar Registro'
+  },
   'languages.title': {
     ar: 'اللغات المتوفرة',
     en: 'Available Languages',
@@ -151,6 +161,203 @@ const translations: Translations = {
     ar: 'املأ النموذج أدناه للتسجيل في إحدى دوراتنا اللغوية. سيتواصل معك فريقنا في أقرب وقت ممكن لتأكيد التسجيل وترتيب مواعيد الدروس.',
     en: 'Fill out the form below to register for one of our language courses. Our team will contact you as soon as possible to confirm registration and arrange lesson times.',
     es: 'Complete el formulario a continuación para registrarse en uno de nuestros cursos de idiomas. Nuestro equipo se pondrá en contacto con usted lo antes posible para confirmar el registro y organizar los horarios de las clases.'
+  },
+  'register.paymentMethod.card': {
+    ar: 'بطاقة ائتمانية',
+    en: 'Credit Card',
+    es: 'Tarjeta de Crédito'
+  },
+  'register.paymentMethod.bank': {
+    ar: 'تحويل بنكي',
+    en: 'Bank Transfer',
+    es: 'Transferencia Bancaria'
+  },
+  'register.bankTransfer.title': {
+    ar: 'بإمكانك الدفع مسبقا',
+    en: 'You can pay in advance',
+    es: 'Puede pagar por adelantado'
+  },
+  'register.bankTransfer.instruction': {
+    ar: 'عبر الإرسال لأحد البنوك أسفله',
+    en: 'Via transfer to one of the banks below',
+    es: 'Mediante transferencia a uno de los bancos siguientes'
+  },
+  'register.bankTransfer.baridBank': {
+    ar: 'عبر BARID BANK',
+    en: 'Via BARID BANK',
+    es: 'A través de BARID BANK'
+  },
+  'register.bankTransfer.cihBank': {
+    ar: 'عبر CIH BANK',
+    en: 'Via CIH BANK',
+    es: 'A través de CIH BANK'
+  },
+  'register.bankTransfer.accountHolder': {
+    ar: 'صاحب الحساب',
+    en: 'Account Holder',
+    es: 'Titular de la cuenta'
+  },
+  'register.bankTransfer.contactAfter': {
+    ar: 'بعد إتمام التحويل، يرجى التواصل معنا عبر واتساب لتأكيد تسجيلك',
+    en: 'After completing the transfer, please contact us via WhatsApp to confirm your registration',
+    es: 'Después de completar la transferencia, contáctenos a través de WhatsApp para confirmar su registro'
+  },
+  'register.bankTransfer.contactWhatsApp': {
+    ar: 'تواصل معنا عبر واتساب',
+    en: 'Contact us via WhatsApp',
+    es: 'Contáctenos por WhatsApp'
+  },
+  'register.form.title': {
+    ar: 'سجل الآن',
+    en: 'Register Now',
+    es: 'Regístrate Ahora'
+  },
+  'register.form.personalInfo': {
+    ar: 'المعلومات الشخصية',
+    en: 'Personal Information',
+    es: 'Información Personal'
+  },
+  'register.form.courseInfo': {
+    ar: 'معلومات الدورة',
+    en: 'Course Information',
+    es: 'Información del Curso'
+  },
+  // Form Fields
+  'form.fullName': {
+    ar: 'الاسم الكامل',
+    en: 'Full Name',
+    es: 'Nombre Completo'
+  },
+  'form.fullNamePlaceholder': {
+    ar: 'الاسم و النسب',
+    en: 'First and Last Name',
+    es: 'Nombre y Apellido'
+  },
+  'form.age': {
+    ar: 'العمر',
+    en: 'Age',
+    es: 'Edad'
+  },
+  'form.agePlaceholder': {
+    ar: 'العمر',
+    en: 'Age',
+    es: 'Edad'
+  },
+  'form.email': {
+    ar: 'البريد الإلكتروني',
+    en: 'Email',
+    es: 'Correo Electrónico'
+  },
+  'form.emailPlaceholder': {
+    ar: 'البريد الإلكتروني',
+    en: 'Email Address',
+    es: 'Dirección de Correo Electrónico'
+  },
+  'form.phone': {
+    ar: 'الهاتف',
+    en: 'Phone',
+    es: 'Teléfono'
+  },
+  'form.phonePlaceholder': {
+    ar: 'الهاتف',
+    en: 'Phone Number',
+    es: 'Número de Teléfono'
+  },
+  'form.selectLevel': {
+    ar: 'حدد المستوى',
+    en: 'Select Level',
+    es: 'Seleccionar Nivel'
+  },
+  'form.chooseLevelPlaceholder': {
+    ar: 'اختر المستوى',
+    en: 'Choose Level',
+    es: 'Elegir Nivel'
+  },
+  'level.beginner': {
+    ar: 'مبتدئ',
+    en: 'Beginner',
+    es: 'Principiante'
+  },
+  'level.intermediate': {
+    ar: 'متوسط',
+    en: 'Intermediate',
+    es: 'Intermedio'
+  },
+  'level.advanced': {
+    ar: 'متقدم',
+    en: 'Advanced',
+    es: 'Avanzado'
+  },
+  'form.selectLanguage': {
+    ar: 'حدد اللغة',
+    en: 'Select Language',
+    es: 'Seleccionar Idioma'
+  },
+  'form.chooseLanguagePlaceholder': {
+    ar: 'اختر اللغة',
+    en: 'Choose Language',
+    es: 'Elegir Idioma'
+  },
+  'form.selectSubscription': {
+    ar: 'حدد اشتراكك',
+    en: 'Select Subscription',
+    es: 'Seleccionar Suscripción'
+  },
+  'form.chooseSubscriptionPlaceholder': {
+    ar: 'اختر نوع الاشتراك',
+    en: 'Choose Subscription Type',
+    es: 'Elegir Tipo de Suscripción'
+  },
+  'subscription.individual': {
+    ar: 'فردي',
+    en: 'Individual',
+    es: 'Individual'
+  },
+  'subscription.group': {
+    ar: 'جماعي',
+    en: 'Group',
+    es: 'Grupo'
+  },
+  'subscription.online': {
+    ar: 'عبر الإنترنت',
+    en: 'Online',
+    es: 'En línea'
+  },
+  'form.paymentMethod': {
+    ar: 'طريقة الدفع',
+    en: 'Payment Method',
+    es: 'Método de Pago'
+  },
+  'form.creditCard': {
+    ar: 'بطاقة ائتمان',
+    en: 'Credit Card',
+    es: 'Tarjeta de Crédito'
+  },
+  // Notifications
+  'notifications.registrationSuccess': {
+    ar: 'تم إرسال طلب التسجيل بنجاح',
+    en: 'Registration request sent successfully',
+    es: 'Solicitud de registro enviada con éxito'
+  },
+  'notifications.contactSoon': {
+    ar: 'سنتواصل معك قريبًا لتأكيد التسجيل',
+    en: 'We will contact you soon to confirm registration',
+    es: 'Nos pondremos en contacto contigo pronto para confirmar el registro'
+  },
+  'notifications.error': {
+    ar: 'حدث خطأ',
+    en: 'An error occurred',
+    es: 'Se produjo un error'
+  },
+  'notifications.tryAgain': {
+    ar: 'يرجى المحاولة مرة أخرى',
+    en: 'Please try again',
+    es: 'Inténtalo de nuevo'
+  },
+  'whatsapp.newRegistration': {
+    ar: 'طلب تسجيل جديد',
+    en: 'New registration request',
+    es: 'Nueva solicitud de registro'
   },
   // Languages Page
   'languages.pageTitle': {

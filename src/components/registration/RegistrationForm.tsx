@@ -24,37 +24,27 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { languages } from "@/data/languages";
-import { RegistrationFormData } from "@/types";
 import { sendWhatsAppMessage } from "@/services/whatsappService";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const formSchema = z.object({
-  fullName: z.string().min(3, { message: "الاسم الكامل مطلوب" }),
-  age: z.string().refine((val) => !isNaN(Number(val)), {
-    message: "العمر يجب أن يكون رقمًا",
-  }),
-  email: z.string().email({ message: "البريد الإلكتروني غير صالح" }),
-  phone: z.string().min(8, { message: "رقم الهاتف غير صالح" }),
-  level: z.string().min(1, { message: "يرجى اختيار المستوى" }),
-  language: z.string().min(1, { message: "يرجى اختيار اللغة" }),
-  classType: z.string().min(1, { message: "يرجى اختيار نوع الاشتراك" }),
-  // Bank card information
-  cardName: z.string().min(3, { message: "اسم حامل البطاقة مطلوب" }),
-  cardNumber: z.string().min(12, { message: "رقم البطاقة غير صالح" })
-    .max(19, { message: "رقم البطاقة غير صالح" }),
-  cardExpiry: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, { 
-    message: "تاريخ انتهاء البطاقة غير صالح (MM/YY)" 
-  }),
-  cardCvc: z.string().min(3, { message: "رمز CVC غير صالح" }).max(4),
-  saveCardInfo: z.boolean().optional(),
+  fullName: z.string().min(3),
+  age: z.string().refine((val) => !isNaN(Number(val))),
+  email: z.string().email(),
+  phone: z.string().min(8),
+  level: z.string().min(1),
+  language: z.string().min(1),
+  classType: z.string().min(1),
+  // Card details are handled in a separate tab now
 });
 
 const RegistrationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
-  const form = useForm<RegistrationFormData>({
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: "",
@@ -64,48 +54,43 @@ const RegistrationForm = () => {
       level: "",
       language: "",
       classType: "",
-      cardName: "",
-      cardNumber: "",
-      cardExpiry: "",
-      cardCvc: "",
-      saveCardInfo: false,
     },
   });
 
   // This would typically come from an environment variable or configuration
   const whatsappAdminNumber = "212612345678"; // Example number with country code (Morocco)
 
-  const onSubmit = (data: RegistrationFormData) => {
+  const onSubmit = (data) => {
     setIsSubmitting(true);
 
     try {
       // Format the message for WhatsApp
       const message = `
-طلب تسجيل جديد:
-الاسم الكامل: ${data.fullName}
-العمر: ${data.age}
-البريد الإلكتروني: ${data.email}
-رقم الهاتف: ${data.phone}
-المستوى: ${data.level}
-اللغة: ${data.language}
-نوع الاشتراك: ${data.classType}
-معلومات بطاقة الدفع: بطاقة تم تقديمها
+${t('whatsapp.newRegistration')}:
+${t('form.fullName')}: ${data.fullName}
+${t('form.age')}: ${data.age}
+${t('form.email')}: ${data.email}
+${t('form.phone')}: ${data.phone}
+${t('form.level')}: ${data.level}
+${t('form.language')}: ${data.language}
+${t('form.classType')}: ${data.classType}
+${t('form.paymentMethod')}: ${t('form.creditCard')}
       `;
 
       // Send the message via WhatsApp
       sendWhatsAppMessage(whatsappAdminNumber, message);
 
       toast({
-        title: "تم إرسال طلب التسجيل بنجاح",
-        description: "سنتواصل معك قريبًا لتأكيد التسجيل",
+        title: t('notifications.registrationSuccess'),
+        description: t('notifications.contactSoon'),
       });
 
       // Redirect to thank you page or home page
       navigate("/");
     } catch (error) {
       toast({
-        title: "حدث خطأ",
-        description: "يرجى المحاولة مرة أخرى",
+        title: t('notifications.error'),
+        description: t('notifications.tryAgain'),
         variant: "destructive",
       });
     } finally {
@@ -117,23 +102,23 @@ const RegistrationForm = () => {
     <Card className="w-full">
       <CardHeader>
         <CardTitle className="rtl text-2xl font-bold text-center">
-          سجل الآن
+          {t('register.form.title')}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 rtl">
             {/* Personal Information Section */}
-            <h3 className="text-xl font-semibold mb-4">المعلومات الشخصية</h3>
+            <h3 className="text-xl font-semibold mb-4">{t('register.form.personalInfo')}</h3>
             
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>الاسم الكامل</FormLabel>
+                  <FormLabel>{t('form.fullName')}</FormLabel>
                   <FormControl>
-                    <Input placeholder="الاسم و النسب" {...field} />
+                    <Input placeholder={t('form.fullNamePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -145,9 +130,9 @@ const RegistrationForm = () => {
               name="age"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>العمر</FormLabel>
+                  <FormLabel>{t('form.age')}</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="العمر" {...field} />
+                    <Input type="number" placeholder={t('form.agePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -159,11 +144,11 @@ const RegistrationForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>البريد الإلكتروني</FormLabel>
+                  <FormLabel>{t('form.email')}</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="البريد الإلكتروني"
+                      placeholder={t('form.emailPlaceholder')}
                       {...field}
                     />
                   </FormControl>
@@ -177,9 +162,9 @@ const RegistrationForm = () => {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>الهاتف</FormLabel>
+                  <FormLabel>{t('form.phone')}</FormLabel>
                   <FormControl>
-                    <Input placeholder="الهاتف" {...field} />
+                    <Input placeholder={t('form.phonePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -188,7 +173,7 @@ const RegistrationForm = () => {
 
             {/* Course Information Section */}
             <div className="border-t pt-6 mt-6">
-              <h3 className="text-xl font-semibold mb-4">معلومات الدورة</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('register.form.courseInfo')}</h3>
             </div>
 
             <FormField
@@ -196,20 +181,20 @@ const RegistrationForm = () => {
               name="level"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>حدد المستوى</FormLabel>
+                  <FormLabel>{t('form.selectLevel')}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="اختر المستوى" />
+                        <SelectValue placeholder={t('form.chooseLevelPlaceholder')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="beginner">مبتدئ</SelectItem>
-                      <SelectItem value="intermediate">متوسط</SelectItem>
-                      <SelectItem value="advanced">متقدم</SelectItem>
+                      <SelectItem value="beginner">{t('level.beginner')}</SelectItem>
+                      <SelectItem value="intermediate">{t('level.intermediate')}</SelectItem>
+                      <SelectItem value="advanced">{t('level.advanced')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -222,14 +207,14 @@ const RegistrationForm = () => {
               name="language"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>حدد اللغة</FormLabel>
+                  <FormLabel>{t('form.selectLanguage')}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="اختر اللغة" />
+                        <SelectValue placeholder={t('form.chooseLanguagePlaceholder')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -250,131 +235,23 @@ const RegistrationForm = () => {
               name="classType"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>حدد اشتراكك</FormLabel>
+                  <FormLabel>{t('form.selectSubscription')}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="اختر نوع الاشتراك" />
+                        <SelectValue placeholder={t('form.chooseSubscriptionPlaceholder')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="individual">فردي</SelectItem>
-                      <SelectItem value="group">جماعي</SelectItem>
-                      <SelectItem value="online">عبر الإنترنت</SelectItem>
+                      <SelectItem value="individual">{t('subscription.individual')}</SelectItem>
+                      <SelectItem value="group">{t('subscription.group')}</SelectItem>
+                      <SelectItem value="online">{t('subscription.online')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Payment Information Section */}
-            <div className="border-t pt-6 mt-6">
-              <h3 className="text-xl font-semibold mb-4">معلومات الدفع</h3>
-            </div>
-
-            <FormField
-              control={form.control}
-              name="cardName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>اسم حامل البطاقة</FormLabel>
-                  <FormControl>
-                    <Input placeholder="الاسم على البطاقة" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="cardNumber"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>رقم البطاقة</FormLabel>
-                  <FormControl>
-                    <Input 
-                      placeholder="0000 0000 0000 0000" 
-                      {...field}
-                      onChange={(e) => {
-                        // Format card number with spaces for readability
-                        const value = e.target.value.replace(/\s/g, '');
-                        const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
-                        field.onChange(formattedValue);
-                      }}
-                      maxLength={19}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="grid grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="cardExpiry"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>تاريخ الانتهاء</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="MM/YY" 
-                        {...field}
-                        onChange={(e) => {
-                          // Format expiry date as MM/YY
-                          let value = e.target.value.replace(/[^0-9]/g, '');
-                          if (value.length > 2) {
-                            value = value.slice(0, 2) + '/' + value.slice(2, 4);
-                          }
-                          field.onChange(value);
-                        }}
-                        maxLength={5}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="cardCvc"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>رمز الأمان CVC</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="000" 
-                        {...field}
-                        type="password"
-                        maxLength={4}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <FormField
-              control={form.control}
-              name="saveCardInfo"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 mt-4">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormLabel>حفظ معلومات البطاقة للتسجيل المستقبلي</FormLabel>
-                  </div>
                 </FormItem>
               )}
             />
@@ -384,7 +261,7 @@ const RegistrationForm = () => {
               className="w-full bg-academy-green hover:bg-opacity-90"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "جاري التسجيل..." : "إرسال طلب التسجيل"}
+              {isSubmitting ? t('button.registering') : t('button.submitRegistration')}
             </Button>
           </form>
         </Form>
