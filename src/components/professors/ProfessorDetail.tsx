@@ -4,33 +4,35 @@ import { professors } from "@/data/professors";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, SendIcon } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ProfessorDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { t, dir } = useLanguage();
   
   const professor = professors.find(prof => prof.id === id);
   
   if (!professor) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center">
-        <h2 className="text-2xl font-bold mb-4">الأستاذ غير موجود</h2>
+      <div className="container mx-auto px-4 py-16 text-center" dir={dir}>
+        <h2 className="text-2xl font-bold mb-4">{t('professors.notFound')}</h2>
         <Button onClick={() => navigate('/professors')}>
-          العودة إلى قائمة الأساتذة
+          {t('professors.backToList')}
         </Button>
       </div>
     );
   }
   
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12" dir={dir}>
       <Button 
         variant="ghost" 
         onClick={() => navigate('/professors')}
-        className="mb-6 rtl flex gap-2"
+        className="mb-6 flex gap-2"
       >
         <ArrowRight size={16} />
-        العودة إلى قائمة الأساتذة
+        {t('professors.backToList')}
       </Button>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -43,7 +45,7 @@ const ProfessorDetail = () => {
         </div>
         
         <Card>
-          <CardContent className="p-6 rtl">
+          <CardContent className="p-6">
             <h1 className="text-3xl font-bold mb-2">{professor.name}</h1>
             <p className="text-xl text-academy-green mb-4">{professor.title}</p>
             
@@ -58,16 +60,16 @@ const ProfessorDetail = () => {
                 onClick={() => navigate('/register')}
                 className="w-full bg-academy-green hover:bg-opacity-90"
               >
-                التسجيل للدورة
+                {t('button.register')}
               </Button>
               
               <Button 
                 variant="outline" 
                 onClick={() => navigate('/whatsapp')}
-                className="w-full border-academy-green text-academy-green hover:bg-academy-green hover:text-white flex gap-2"
+                className="w-full border-academy-green text-academy-green hover:bg-academy-green hover:text-white flex gap-2 items-center justify-center"
               >
                 <SendIcon size={16} />
-                تواصل مع الأستاذ عبر الواتساب
+                {t('professors.contactViaWhatsApp')}
               </Button>
             </div>
           </CardContent>

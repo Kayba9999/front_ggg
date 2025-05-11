@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 // Define available languages
@@ -386,6 +385,21 @@ const translations: Translations = {
     en: 'Meet the Professor',
     es: 'Conoce al Profesor'
   },
+  'professors.backToList': {
+    ar: 'العودة إلى قائمة الأساتذة',
+    en: 'Back to Professors List',
+    es: 'Volver a la Lista de Profesores'
+  },
+  'professors.contactViaWhatsApp': {
+    ar: 'تواصل مع الأستاذ عبر الواتساب',
+    en: 'Contact Professor via WhatsApp',
+    es: 'Contactar al Profesor por WhatsApp'
+  },
+  'professors.notFound': {
+    ar: 'الأستاذ غير موجود',
+    en: 'Professor not found',
+    es: 'Profesor no encontrado'
+  },
   // Contact Page
   'contact.title': {
     ar: 'تواصل معنا',
@@ -465,7 +479,7 @@ const translations: Translations = {
     es: 'Puedes contactarnos fácilmente a través de WhatsApp para preguntar sobre cursos de idiomas o para registrarte en un curso específico.'
   },
   'whatsapp.form.title': {
-    ar: 'تواصل معنا عبر واتساب',
+    ar: 'تواصل معنا عبر واتسا��',
     en: 'Contact Us via WhatsApp',
     es: 'Contáctanos por WhatsApp'
   },
