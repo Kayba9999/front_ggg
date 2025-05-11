@@ -9,13 +9,13 @@ const BankTransferInfo = () => {
   const { t, dir } = useLanguage();
 
   return (
-    <Card className="w-full">
+    <Card className="w-full" dir={dir}>
       <CardHeader>
-        <CardTitle className="rtl text-2xl font-bold text-center">
+        <CardTitle className={`text-2xl font-bold text-center ${dir === 'rtl' ? 'rtl' : 'ltr'}`}>
           {t('register.bankTransfer.title')}
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6 rtl">
+      <CardContent className={`space-y-6 ${dir === 'rtl' ? 'rtl' : 'ltr'}`}>
         <p className="text-center">
           {t('register.bankTransfer.instruction')}
         </p>
@@ -53,7 +53,7 @@ const BankTransferInfo = () => {
             asChild
             className="bg-green-500 hover:bg-green-600 py-6 px-8 text-lg flex items-center gap-2"
           >
-            <Link to="/whatsapp">
+            <Link to="/whatsapp" className="flex items-center gap-2">
               <MessageSquare className="h-6 w-6" />
               {t('register.bankTransfer.contactWhatsApp')}
             </Link>

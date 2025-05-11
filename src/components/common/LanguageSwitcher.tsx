@@ -13,10 +13,10 @@ import { Button } from '@/components/ui/button';
 const LanguageSwitcher: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
 
-  const languageOptions: { code: SupportedLanguage, name: string, flag: string }[] = [
-    { code: 'ar', name: 'العربية', flag: '🇸🇦' },
-    { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' }
+  const languageOptions: { code: SupportedLanguage, name: string, flag: string, isRtl: boolean }[] = [
+    { code: 'ar', name: 'العربية', flag: '🇸🇦', isRtl: true },
+    { code: 'en', name: 'English', flag: '🇬🇧', isRtl: false },
+    { code: 'es', name: 'Español', flag: '🇪🇸', isRtl: false }
   ];
 
   // Find current language details

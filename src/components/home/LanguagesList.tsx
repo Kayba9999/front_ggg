@@ -51,7 +51,7 @@ const LanguagesList = () => {
   return (
     <div className="py-16 bg-gray-50" dir={dir}>
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 rtl text-academy-green">
+        <h2 className={`text-3xl font-bold text-center mb-12 text-academy-green ${dir === 'rtl' ? 'rtl' : 'ltr'}`}>
           {t('languages.title')}
         </h2>
         
@@ -62,7 +62,7 @@ const LanguagesList = () => {
                 <div className="text-5xl mb-4">
                   {language.flag}
                 </div>
-                <h3 className="text-xl font-bold mb-2 rtl">{language.name}</h3>
+                <h3 className={`text-xl font-bold mb-2 ${dir === 'rtl' ? 'rtl' : 'ltr'}`}>{language.name}</h3>
                 <p className="text-gray-500 mb-4">{language.nativeName}</p>
                 <Button 
                   variant="outline"

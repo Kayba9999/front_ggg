@@ -1,5 +1,5 @@
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 // Define available languages
 export type SupportedLanguage = 'ar' | 'en' | 'es';
@@ -533,8 +533,28 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     return translations[key][language] || key;
   };
 
+  // Determine text direction based on language
+  const getDirection = (lang: SupportedLanguage): 'rtl' | 'ltr' => {
+    return lang === 'ar' ? 'rtl' : 'ltr';
+  };
+
   // Direction based on language
-  const dir = language === 'ar' ? 'rtl' : 'ltr';
+  const dir = getDirection(language);
+
+  // Apply direction to HTML element
+  useEffect(() => {
+    document.documentElement.dir = dir;
+    document.documentElement.lang = language;
+    
+    // Add appropriate class for text alignment based on direction
+    if (dir === 'rtl') {
+      document.documentElement.classList.add('rtl');
+      document.documentElement.classList.remove('ltr');
+    } else {
+      document.documentElement.classList.add('ltr');
+      document.documentElement.classList.remove('rtl');
+    }
+  }, [language, dir]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t, dir }}>
