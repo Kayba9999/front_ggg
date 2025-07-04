@@ -24,6 +24,7 @@ import StudentsManagement from "./pages/admin/StudentsManagement";
 
 import WhatsAppFloatButton from "./components/home/FloatButtonWhatsapp";
 import EnglishLandingPage from "./pages/landingEngPAge";
+import SpanishLandingPage from "./pages/landingSpanishPage";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/professors/:id" element={<TeacherDetailPage />} />
             <Route path="/languages" element={<LanguagesPage />} />
             <Route path="/languages/english" element={<EnglishLandingPage />} />
+            <Route path="/languages/spanish" element={<SpanishLandingPage />} />
             <Route path="/register" element={<RegistrationPage />} />
             <Route path="/whatsapp" element={<WhatsAppPage />} />
             <Route path="/contact" element={<ContactPage />} />

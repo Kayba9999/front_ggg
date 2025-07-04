@@ -16,24 +16,24 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import NavBar from "@/components/common/NavBar";
 import Footer from "@/components/common/Footer";
 
-export default function EnglishLandingPage() {
+export default function SpanishLandingPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const testimonials = [
     {
-      name: "Maria S.",
-      text: "I got my dream job after just 3 months with Learn Academy!",
+      name: "Carlos M.",
+      text: "¡Conseguí el trabajo de mis sueños después de solo 3 meses con Learn Academy!",
       rating: 5,
     },
     {
-      name: "Ahmed K.",
-      text: "Finally confident speaking English in meetings. Amazing teachers!",
+      name: "Fatima R.",
+      text: "Finalmente tengo confianza hablando español en reuniones. ¡Profesores increíbles!",
       rating: 5,
     },
     {
-      name: "Li Wei",
-      text: "The flexible schedule fits perfectly with my busy life. Highly recommend!",
+      name: "John D.",
+      text: "El horario flexible se adapta perfectamente a mi vida ocupada. ¡Lo recomiendo mucho!",
       rating: 5,
     },
   ];
@@ -50,13 +50,13 @@ export default function EnglishLandingPage() {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "212664685824";
-    const message = "Hi! I'm interested in starting my free English class with Learn Academy. Can you help me get started?";
+    const message = "¡Hola! Estoy interesado en comenzar mi clase gratuita de español con Learn Academy. ¿Pueden ayudarme a empezar?";
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-yellow-50">
       <NavBar />
 
       {/* Hero Section */}
@@ -69,19 +69,19 @@ export default function EnglishLandingPage() {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="inline-flex items-center space-x-2 rounded-full px-6 py-2 mb-6 bg-gradient-to-r from-yellow-50 to-green-50">
-              <span className="text-2xl">🇺🇸</span>
+            <div className="inline-flex items-center space-x-2 rounded-full px-6 py-2 mb-6 bg-gradient-to-r from-yellow-50 to-red-50">
+              <span className="text-2xl">🇪🇸</span>
               <span className="text-sm font-medium text-gray-700">
-                English Learning Made Simple
+                Aprender Español Hecho Simple
               </span>
             </div>
 
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Speak English with Confidence
+              Habla Español con Confianza
             </h1>
 
             <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto">
-              Starting from your very first class
+              Desde tu primera clase
             </p>
 
             <div className="flex items-center justify-center space-x-2 mb-8">
@@ -90,73 +90,73 @@ export default function EnglishLandingPage() {
             </div>
 
             <p className="text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
-              At Learn Academy, we help you speak English in real conversations, not just memorize grammar.
+              En Learn Academy, te ayudamos a hablar español en conversaciones reales, no solo memorizar gramática.
             </p>
 
             <button
               onClick={handleWhatsAppClick}
-              className="group text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600"
+              className="group text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600"
             >
-              Start My Free Class
+              Comenzar Mi Clase Gratuita
               <ChevronRight className="inline-block w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>
 
         {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 rounded-full bg-green-200 opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-32 right-10 w-16 h-16 rounded-full bg-green-300 opacity-20 animate-pulse" style={{ animationDelay: "1s" }}></div>
+        <div className="absolute top-20 left-10 w-20 h-20 rounded-full bg-red-200 opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-32 right-10 w-16 h-16 rounded-full bg-red-300 opacity-20 animate-pulse" style={{ animationDelay: "1s" }}></div>
       </section>
 
       {/* Features Section */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-            What you get:
+            Lo que obtienes:
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-            <div className="group p-6 rounded-2xl border border-green-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-green-400">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform bg-gradient-to-r from-green-600 to-green-500">
+            <div className="group p-6 rounded-2xl border border-red-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-red-400">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform bg-gradient-to-r from-red-600 to-red-500">
                 <Users className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                Live lessons with certified English-speaking teachers
+                Clases en vivo con profesores certificados de habla hispana
               </h3>
               <p className="text-gray-600 text-sm">
-                Learn from experienced native speakers
+                Aprende de hablantes nativos experimentados
               </p>
             </div>
-            <div className="group p-6 rounded-2xl border border-green-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-green-400">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform bg-gradient-to-r from-green-600 to-green-500">
+            <div className="group p-6 rounded-2xl border border-red-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-red-400">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform bg-gradient-to-r from-red-600 to-red-500">
                 <MessageCircle className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                Practical method focused on speaking & listening
+                Método práctico enfocado en hablar y escuchar
               </h3>
               <p className="text-gray-600 text-sm">
-                Real conversations, not just grammar drills
+                Conversaciones reales, no solo ejercicios de gramática
               </p>
             </div>
-            <div className="group p-6 rounded-2xl border border-green-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-green-400">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform bg-gradient-to-r from-green-600 to-green-500">
+            <div className="group p-6 rounded-2xl border border-red-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-red-400">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform bg-gradient-to-r from-red-600 to-red-500">
                 <Clock className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                Flexible schedule – learn anytime, anywhere
+                Horario flexible – aprende cuando quieras, donde quieras
               </h3>
               <p className="text-gray-600 text-sm">
-                Fit learning into your busy lifestyle
+                Adapta el aprendizaje a tu estilo de vida ocupado
               </p>
             </div>
-            <div className="group p-6 rounded-2xl border border-green-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-green-400">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform bg-gradient-to-r from-green-600 to-green-500">
+            <div className="group p-6 rounded-2xl border border-red-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-red-400">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform bg-gradient-to-r from-red-600 to-red-500">
                 <Gift className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                First class FREE – no commitment!
+                ¡Primera clase GRATIS – sin compromiso!
               </h3>
               <p className="text-gray-600 text-sm">
-                Try before you commit to anything
+                Prueba antes de comprometerte con algo
               </p>
             </div>
           </div>
@@ -164,45 +164,45 @@ export default function EnglishLandingPage() {
       </section>
 
       {/* Why Choose Section */}
-      <section className="py-20 bg-gradient-to-b from-yellow-50 to-green-50">
+      <section className="py-20 bg-gradient-to-b from-yellow-50 to-red-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-center mb-12">
-              Why choose Learn Academy?
+              ¿Por qué elegir Learn Academy?
             </h2>
-            <p className="text-xl text-gray-600">Because you deserve to:</p>
+            <p className="text-xl text-gray-600">Porque mereces:</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center text-white mx-auto mb-6 bg-gradient-to-r from-green-600 to-green-500">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center text-white mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-500">
                 <Briefcase className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Be confident in interviews and meetings
+                Tener confianza en entrevistas y reuniones
               </h3>
             </div>
             <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center text-white mx-auto mb-6 bg-gradient-to-r from-green-600 to-green-500">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center text-white mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-500">
                 <Globe className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Travel and speak without fear
+                Viajar y hablar sin miedo
               </h3>
             </div>
             <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center text-white mx-auto mb-6 bg-gradient-to-r from-green-600 to-green-500">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center text-white mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-500">
                 <GraduationCap className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Study and grow your opportunities
+                Estudiar y hacer crecer tus oportunidades
               </h3>
             </div>
           </div>
 
           <div className="text-center mt-12">
             <p className="text-lg font-medium text-gray-800 mb-8">
-              And finally speak English, not just study it
+              Y finalmente hablar español, no solo estudiarlo
             </p>
             <div className="text-2xl mb-6">🚀</div>
           </div>
@@ -213,7 +213,7 @@ export default function EnglishLandingPage() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Thousands of learners already trust Learn Academy
+            Miles de estudiantes ya confían en Learn Academy
           </h2>
 
           <div className="relative">
@@ -249,20 +249,20 @@ export default function EnglishLandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-green-500">
+      <section className="py-20 bg-gradient-to-r from-red-600 to-red-500">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-6">
-            Start your journey now
+            Comienza tu viaje ahora
           </h2>
-          <p className="text-xl mb-8 text-green-100">
-            Join today and get your free trial class.
+          <p className="text-xl mb-8 text-red-100">
+            Únete hoy y obtén tu clase de prueba gratuita.
           </p>
 
           <button
             onClick={handleWhatsAppClick}
-            className="px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl bg-yellow-100 text-green-700 hover:bg-yellow-200"
+            className="px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl bg-yellow-100 text-red-700 hover:bg-yellow-200"
           >
-            👉 Start My Free Class
+            👉 Comenzar Mi Clase Gratuita
           </button>
         </div>
       </section>
