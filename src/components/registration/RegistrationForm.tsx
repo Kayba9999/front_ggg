@@ -1,9 +1,9 @@
-
 import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -23,26 +23,28 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { languages } from "@/data/languages";
-import { sendWhatsAppMessage } from "@/services/whatsappService";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { registerUser, fetchLanguages } from "@/services/api";
 
 const formSchema = z.object({
   fullName: z.string().min(3),
-  age: z.string().refine((val) => !isNaN(Number(val))),
+  age: z.string().refine((val) => !isNaN(Number(val)) && Number(val) >= 10 && Number(val) <= 100),
   email: z.string().email(),
   phone: z.string().min(8),
   level: z.string().min(1),
   language: z.string().min(1),
   classType: z.string().min(1),
-  // Card details are handled in a separate tab now
 });
 
 const RegistrationForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t,dir } = useLanguage();
+
+  const { data: languages, isLoading: languagesLoading } = useQuery({
+    queryKey: ['languages'],
+    queryFn: fetchLanguages
+  });
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -57,68 +59,66 @@ const RegistrationForm = () => {
     },
   });
 
-  // This would typically come from an environment variable or configuration
-  const whatsappAdminNumber = "212612345678"; // Example number with country code (Morocco)
-
-  const onSubmit = (data) => {
-    setIsSubmitting(true);
-
-    try {
-      // Format the message for WhatsApp
-      const message = `
-${t('whatsapp.newRegistration')}:
-${t('form.fullName')}: ${data.fullName}
-${t('form.age')}: ${data.age}
-${t('form.email')}: ${data.email}
-${t('form.phone')}: ${data.phone}
-${t('form.level')}: ${data.level}
-${t('form.language')}: ${data.language}
-${t('form.classType')}: ${data.classType}
-${t('form.paymentMethod')}: ${t('form.creditCard')}
-      `;
-
-      // Send the message via WhatsApp
-      sendWhatsAppMessage(whatsappAdminNumber, message);
-
+  const registerMutation = useMutation({
+    mutationFn: registerUser,
+    onSuccess: (response) => {
       toast({
         title: t('notifications.registrationSuccess'),
-        description: t('notifications.contactSoon'),
+        description: response.message || t('notifications.contactSoon'),
       });
-
-      // Redirect to thank you page or home page
       navigate("/");
-    } catch (error) {
+    },
+    onError: (error: any) => {
+      console.log('error',error)
       toast({
         title: t('notifications.error'),
-        description: t('notifications.tryAgain'),
+        description: error.response?.data?.message || t('notifications.tryAgain'),
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
     }
+  });
+
+  const onSubmit = async (data: any) => {
+    registerMutation.mutate({
+      fullName: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      age: parseInt(data.age),
+      level: data.level,
+      language: data.language,
+      classType: data.classType,
+    });
   };
 
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="rtl text-2xl font-bold text-center">
-          {t('register.form.title')}
+        <CardTitle className={" text-2xl font-bold text-center" + ` ${dir}`}>
+          {t("register.form.title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 rtl">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className={"space-y-6 " + ` ${dir}`}
+          >
             {/* Personal Information Section */}
-            <h3 className="text-xl font-semibold mb-4">{t('register.form.personalInfo')}</h3>
-            
+            <h3 className="text-xl font-semibold mb-4">
+              {t("register.form.personalInfo")}
+            </h3>
+
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('form.fullName')}</FormLabel>
+                  <FormLabel>{t("form.fullName")}</FormLabel>
                   <FormControl>
-                    <Input placeholder={t('form.fullNamePlaceholder')} {...field} />
+                    <Input
+                      placeholder={t("form.fullNamePlaceholder")}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -130,9 +130,13 @@ ${t('form.paymentMethod')}: ${t('form.creditCard')}
               name="age"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('form.age')}</FormLabel>
+                  <FormLabel>{t("form.age")}</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder={t('form.agePlaceholder')} {...field} />
+                    <Input
+                      type="number"
+                      placeholder={t("form.agePlaceholder")}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -144,11 +148,11 @@ ${t('form.paymentMethod')}: ${t('form.creditCard')}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('form.email')}</FormLabel>
+                  <FormLabel>{t("form.email")}</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder={t('form.emailPlaceholder')}
+                      placeholder={t("form.emailPlaceholder")}
                       {...field}
                     />
                   </FormControl>
@@ -162,9 +166,12 @@ ${t('form.paymentMethod')}: ${t('form.creditCard')}
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('form.phone')}</FormLabel>
+                  <FormLabel>{t("form.phone")}</FormLabel>
                   <FormControl>
-                    <Input placeholder={t('form.phonePlaceholder')} {...field} />
+                    <Input
+                      placeholder={t("form.phonePlaceholder")}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -173,7 +180,9 @@ ${t('form.paymentMethod')}: ${t('form.creditCard')}
 
             {/* Course Information Section */}
             <div className="border-t pt-6 mt-6">
-              <h3 className="text-xl font-semibold mb-4">{t('register.form.courseInfo')}</h3>
+              <h3 className="text-xl font-semibold mb-4">
+                {t("register.form.courseInfo")}
+              </h3>
             </div>
 
             <FormField
@@ -181,20 +190,28 @@ ${t('form.paymentMethod')}: ${t('form.creditCard')}
               name="level"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('form.selectLevel')}</FormLabel>
+                  <FormLabel>{t("form.selectLevel")}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder={t('form.chooseLevelPlaceholder')} />
+                        <SelectValue
+                          placeholder={t("form.chooseLevelPlaceholder")}
+                        />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="beginner">{t('level.beginner')}</SelectItem>
-                      <SelectItem value="intermediate">{t('level.intermediate')}</SelectItem>
-                      <SelectItem value="advanced">{t('level.advanced')}</SelectItem>
+                      <SelectItem value="beginner">
+                        {t("level.beginner")}
+                      </SelectItem>
+                      <SelectItem value="intermediate">
+                        {t("level.intermediate")}
+                      </SelectItem>
+                      <SelectItem value="advanced">
+                        {t("level.advanced")}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -207,22 +224,30 @@ ${t('form.paymentMethod')}: ${t('form.creditCard')}
               name="language"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('form.selectLanguage')}</FormLabel>
+                  <FormLabel>{t("form.selectLanguage")}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder={t('form.chooseLanguagePlaceholder')} />
+                        <SelectValue
+                          placeholder={t("form.chooseLanguagePlaceholder")}
+                        />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {languages.map((language) => (
-                        <SelectItem key={language.id} value={language.id}>
-                          {language.name} {language.flag}
+                      {languagesLoading ? (
+                        <SelectItem value="loading" disabled>
+                          Loading...
                         </SelectItem>
-                      ))}
+                      ) : (
+                        languages?.map((language: any) => (
+                          <SelectItem key={language.id} value={language.name}>
+                            {language.name} {language.icon}
+                          </SelectItem>
+                        ))
+                      )}
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -235,20 +260,25 @@ ${t('form.paymentMethod')}: ${t('form.creditCard')}
               name="classType"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('form.selectSubscription')}</FormLabel>
+                  <FormLabel>{t("form.selectSubscription")}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder={t('form.chooseSubscriptionPlaceholder')} />
+                        <SelectValue
+                          placeholder={t("form.chooseSubscriptionPlaceholder")}
+                        />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="individual">{t('subscription.individual')}</SelectItem>
-                      <SelectItem value="group">{t('subscription.group')}</SelectItem>
-                      <SelectItem value="online">{t('subscription.online')}</SelectItem>
+                      <SelectItem value="individual">
+                        {t("subscription.individual")}
+                      </SelectItem>
+                      <SelectItem value="group">
+                        {t("subscription.group")}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -259,9 +289,11 @@ ${t('form.paymentMethod')}: ${t('form.creditCard')}
             <Button
               type="submit"
               className="w-full bg-academy-green hover:bg-opacity-90"
-              disabled={isSubmitting}
+              disabled={registerMutation.isPending}
             >
-              {isSubmitting ? t('button.registering') : t('button.submitRegistration')}
+              {registerMutation.isPending
+                ? t("button.registering")
+                : t("button.submitRegistration")}
             </Button>
           </form>
         </Form>

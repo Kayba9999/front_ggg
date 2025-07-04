@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,8 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Index from "./pages/Index";
-import ProfessorsPage from "./pages/ProfessorsPage";
-import ProfessorDetailPage from "./pages/ProfessorDetailPage";
+
+import TeachersPage from "./pages/TeachersPage";
+import TeacherDetailPage from "./pages/TeacherDetailPage";
 import LanguagesPage from "./pages/LanguagesPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import WhatsAppPage from "./pages/WhatsAppPage";
@@ -16,19 +16,14 @@ import NotFound from "./pages/NotFound";
 import AdminLoginPage from "./pages/AdminLoginPage";
 
 // Admin pages
-import AdminDashboardPage from "./pages/AdminDashboardPage";
-import AdminDashboardOverview from "./components/admin/AdminDashboardOverview";
-import AdminProfessors from "./components/admin/AdminProfessors";
-import AdminLanguages from "./components/admin/AdminLanguages";
-import AdminUsers from "./components/admin/AdminUsers";
-import AdminCourses from "./components/admin/AdminCourses";
-import AdminSettings from "./components/admin/AdminSettings";
-import AddUserPage from "./pages/admin/AddUserPage";
-import AddCoursePage from "./pages/admin/AddCoursePage";
-import EditUserPage from "./pages/admin/EditUserPage";
-import EditCoursePage from "./pages/admin/EditCoursePage";
-import EditProfessorPage from "./pages/admin/EditProfessorPage";
-import EditLanguagePage from "./pages/admin/EditLanguagePage";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import QuizManagement from "./pages/admin/QuizManagement";
+import CreateQuiz from "./pages/admin/CreateQuiz";
+import QuizQuestions from "./pages/admin/QuizQuestions";
+import StudentsManagement from "./pages/admin/StudentsManagement";
+
+import WhatsAppFloatButton from "./components/home/FloatButtonWhatsapp";
+import EnglishLandingPage from "./pages/landingEngPAge";
 
 const queryClient = new QueryClient();
 
@@ -38,36 +33,32 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <WhatsAppFloatButton />
         <BrowserRouter>
           <Routes>
             {/* Main site routes */}
             <Route path="/" element={<Index />} />
-            <Route path="/professors" element={<ProfessorsPage />} />
-            <Route path="/professors/:id" element={<ProfessorDetailPage />} />
+            <Route path="/professors" element={<TeachersPage />} />
+            <Route path="/professors/:id" element={<TeacherDetailPage />} />
             <Route path="/languages" element={<LanguagesPage />} />
+            <Route path="/languages/english" element={<EnglishLandingPage />} />
             <Route path="/register" element={<RegistrationPage />} />
             <Route path="/whatsapp" element={<WhatsAppPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            
+
             {/* Admin login route */}
             <Route path="/admin/login" element={<AdminLoginPage />} />
-            
-            {/* Admin routes */}
-            <Route path="/admin" element={<AdminDashboardPage />}>
-              <Route index element={<AdminDashboardOverview />} />
-              <Route path="professors" element={<AdminProfessors />} />
-              <Route path="languages" element={<AdminLanguages />} />
-              <Route path="users" element={<AdminUsers />} />
-              <Route path="courses" element={<AdminCourses />} />
-              <Route path="settings" element={<AdminSettings />} />
-              <Route path="add-user" element={<AddUserPage />} />
-              <Route path="add-course" element={<AddCoursePage />} />
-              <Route path="edit-user/:id" element={<EditUserPage />} />
-              <Route path="edit-course/:id" element={<EditCoursePage />} />
-              <Route path="edit-professor/:id" element={<EditProfessorPage />} />
-              <Route path="edit-language/:id" element={<EditLanguagePage />} />
-            </Route>
-            
+
+            {/* Admin dashboard routes */}
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/quizzes" element={<QuizManagement />} />
+            <Route path="/admin/quizzes/create" element={<CreateQuiz />} />
+            <Route
+              path="/admin/quizzes/:quizId/questions"
+              element={<QuizQuestions />}
+            />
+            <Route path="/admin/students" element={<StudentsManagement />} />
+
             {/* 404 route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
