@@ -74,7 +74,13 @@ export default function EnglishLandingPage() {
             }`}
           >
             <div className="inline-flex items-center space-x-2 rounded-full px-6 py-2 mb-6 bg-gradient-to-r from-yellow-50 to-green-50">
-              <span className="text-2xl">🇺🇸</span>
+              <span className="text-2xl">
+                <img 
+                  src="https://flagcdn.com/w40/us.png" 
+                  alt="US Flag" 
+                  className="w-8 h-6 object-cover rounded-sm"
+                />
+              </span>
               <span className="text-sm font-medium text-gray-700">
                 {t("hero.badge") || "English Learning Made Simple"}
               </span>
