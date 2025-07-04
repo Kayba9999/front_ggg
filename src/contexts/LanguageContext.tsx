@@ -82,6 +82,11 @@ const translations: Translations = {
     en: "Register for a course",
     es: "Regístrate en un curso",
   },
+  "languages.learnMore": {
+    ar: "تعلم المزيد",
+    en: "Learn More",
+    es: "Aprende Más",
+  },
   "language.select": {
     ar: "اختر اللغة",
     en: "Select Language",

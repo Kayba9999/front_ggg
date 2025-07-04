@@ -51,6 +51,23 @@ const LanguagesList = () => {
     );
   }
 
+  // Function to get the appropriate landing page route
+  const getLanguageLandingPage = (languageName: string) => {
+    const lowerName = languageName.toLowerCase();
+    if (lowerName.includes('english') || lowerName.includes('إنجليزية')) {
+      return '/languages/english';
+    } else if (lowerName.includes('spanish') || lowerName.includes('إسبانية')) {
+      return '/languages/spanish';
+    }
+    return '/register'; // Default fallback
+  };
+
+  // Function to handle language card click
+  const handleLanguageClick = (language: any) => {
+    const landingPage = getLanguageLandingPage(language.name);
+    navigate(landingPage);
+  };
+
   return (
     <div className="py-16 bg-gray-50" dir={dir}>
       <div className="container mx-auto px-4">
@@ -62,7 +79,8 @@ const LanguagesList = () => {
           {languages?.map((language) => (
             <Card
               key={language.id}
-              className="transition-all hover:shadow-lg w-80"
+              className="transition-all hover:shadow-lg w-80 cursor-pointer transform hover:scale-105"
+              onClick={() => handleLanguageClick(language)}
             >
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center mb-4 h-16">
@@ -76,14 +94,31 @@ const LanguagesList = () => {
                 <div className="flex flex-col gap-2">
                   <Button
                     className="w-full bg-academy-green hover:bg-academy-green/90"
-                    onClick={() => navigate("/register")}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card click
+                      const landingPage = getLanguageLandingPage(language.name);
+                      navigate(landingPage);
+                    }}
+                  >
+                    {t("languages.learnMore")}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full border-academy-green text-academy-green hover:bg-academy-green hover:text-white"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card click
+                      navigate("/register");
+                    }}
                   >
                     {t("button.register")}
                   </Button>
                   <Button
                     variant="outline"
                     className="w-full border-academy-green text-academy-green hover:bg-academy-green hover:text-white"
-                    onClick={() => navigate("/whatsapp")}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card click
+                      navigate("/whatsapp");
+                    }}
                   >
                     {t("button.inquiry")}
                   </Button>
