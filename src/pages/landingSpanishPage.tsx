@@ -19,26 +19,30 @@ import Footer from "@/components/common/Footer";
 export default function SpanishLandingPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const { t, setLanguage } = useLanguage();
+
+  // Set language to Spanish when component mounts
+  useEffect(() => {
+    setLanguage('es');
+  }, [setLanguage]);
 
   const testimonials = [
     {
       name: "Carlos M.",
-      text: "¡Conseguí el trabajo de mis sueños después de solo 3 meses con Learn Academy!",
+      text: t("testimonials.spanish.carlos") || "¡Conseguí el trabajo de mis sueños después de solo 3 meses con Learn Academy!",
       rating: 5,
     },
     {
       name: "Fatima R.",
-      text: "Finalmente tengo confianza hablando español en reuniones. ¡Profesores increíbles!",
+      text: t("testimonials.spanish.fatima") || "Finalmente tengo confianza hablando español en reuniones. ¡Profesores increíbles!",
       rating: 5,
     },
     {
       name: "John D.",
-      text: "El horario flexible se adapta perfectamente a mi vida ocupada. ¡Lo recomiendo mucho!",
+      text: t("testimonials.spanish.john") || "El horario flexible se adapta perfectamente a mi vida ocupada. ¡Lo recomiendo mucho!",
       rating: 5,
     },
   ];
-
-  const { t } = useLanguage();
 
   useEffect(() => {
     setIsVisible(true);
@@ -50,7 +54,7 @@ export default function SpanishLandingPage() {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "212664685824";
-    const message = "¡Hola! Estoy interesado en comenzar mi clase gratuita de español con Learn Academy. ¿Pueden ayudarme a empezar?";
+    const message = t("whatsapp.spanish.message") || "¡Hola! Estoy interesado en comenzar mi clase gratuita de español con Learn Academy. ¿Pueden ayudarme a empezar?";
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
@@ -72,16 +76,16 @@ export default function SpanishLandingPage() {
             <div className="inline-flex items-center space-x-2 rounded-full px-6 py-2 mb-6 bg-gradient-to-r from-yellow-50 to-red-50">
               <span className="text-2xl">🇪🇸</span>
               <span className="text-sm font-medium text-gray-700">
-                Aprender Español Hecho Simple
+                {t("hero.badge.spanish") || "Aprender Español Hecho Simple"}
               </span>
             </div>
 
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Habla Español con Confianza
+              {t("hero.title.spanish") || "Habla Español con Confianza"}
             </h1>
 
             <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto">
-              Desde tu primera clase
+              {t("hero.subtitle.spanish") || "Desde tu primera clase"}
             </p>
 
             <div className="flex items-center justify-center space-x-2 mb-8">
@@ -90,14 +94,14 @@ export default function SpanishLandingPage() {
             </div>
 
             <p className="text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
-              En Learn Academy, te ayudamos a hablar español en conversaciones reales, no solo memorizar gramática.
+              {t("hero.description.spanish") || "En Learn Academy, te ayudamos a hablar español en conversaciones reales, no solo memorizar gramática."}
             </p>
 
             <button
               onClick={handleWhatsAppClick}
               className="group text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600"
             >
-              Comenzar Mi Clase Gratuita
+              {t("hero.cta.spanish") || "Comenzar Mi Clase Gratuita"}
               <ChevronRight className="inline-block w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -112,7 +116,7 @@ export default function SpanishLandingPage() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-            Lo que obtienes:
+            {t("features.title.spanish") || "Lo que obtienes:"}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             <div className="group p-6 rounded-2xl border border-red-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-red-400">
@@ -120,10 +124,10 @@ export default function SpanishLandingPage() {
                 <Users className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                Clases en vivo con profesores certificados de habla hispana
+                {t("features.teachers.spanish") || "Clases en vivo con profesores certificados de habla hispana"}
               </h3>
               <p className="text-gray-600 text-sm">
-                Aprende de hablantes nativos experimentados
+                {t("features.teachers.description.spanish") || "Aprende de hablantes nativos experimentados"}
               </p>
             </div>
             <div className="group p-6 rounded-2xl border border-red-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-red-400">
@@ -131,10 +135,10 @@ export default function SpanishLandingPage() {
                 <MessageCircle className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                Método práctico enfocado en hablar y escuchar
+                {t("features.method.spanish") || "Método práctico enfocado en hablar y escuchar"}
               </h3>
               <p className="text-gray-600 text-sm">
-                Conversaciones reales, no solo ejercicios de gramática
+                {t("features.method.description.spanish") || "Conversaciones reales, no solo ejercicios de gramática"}
               </p>
             </div>
             <div className="group p-6 rounded-2xl border border-red-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-red-400">
@@ -142,10 +146,10 @@ export default function SpanishLandingPage() {
                 <Clock className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                Horario flexible – aprende cuando quieras, donde quieras
+                {t("features.schedules.spanish") || "Horario flexible – aprende cuando quieras, donde quieras"}
               </h3>
               <p className="text-gray-600 text-sm">
-                Adapta el aprendizaje a tu estilo de vida ocupado
+                {t("features.schedule.description.spanish") || "Adapta el aprendizaje a tu estilo de vida ocupado"}
               </p>
             </div>
             <div className="group p-6 rounded-2xl border border-red-200 bg-gradient-to-b from-white to-yellow-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-red-400">
@@ -153,10 +157,10 @@ export default function SpanishLandingPage() {
                 <Gift className="w-6 h-6" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                ¡Primera clase GRATIS – sin compromiso!
+                {t("features.trial.spanish") || "¡Primera clase GRATIS – sin compromiso!"}
               </h3>
               <p className="text-gray-600 text-sm">
-                Prueba antes de comprometerte con algo
+                {t("features.trial.description.spanish") || "Prueba antes de comprometerte con algo"}
               </p>
             </div>
           </div>
@@ -168,9 +172,11 @@ export default function SpanishLandingPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-center mb-12">
-              ¿Por qué elegir Learn Academy?
+              {t("why.title.spanish") || "¿Por qué elegir Learn Academy?"}
             </h2>
-            <p className="text-xl text-gray-600">Porque mereces:</p>
+            <p className="text-xl text-gray-600">
+              {t("why.subtitle.spanish") || "Porque mereces:"}
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -179,7 +185,7 @@ export default function SpanishLandingPage() {
                 <Briefcase className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Tener confianza en entrevistas y reuniones
+                {t("why.interviews.spanish") || "Tener confianza en entrevistas y reuniones"}
               </h3>
             </div>
             <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
@@ -187,7 +193,7 @@ export default function SpanishLandingPage() {
                 <Globe className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Viajar y hablar sin miedo
+                {t("why.travel.spanish") || "Viajar y hablar sin miedo"}
               </h3>
             </div>
             <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
@@ -195,14 +201,14 @@ export default function SpanishLandingPage() {
                 <GraduationCap className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Estudiar y hacer crecer tus oportunidades
+                {t("why.opportunities.spanish") || "Estudiar y hacer crecer tus oportunidades"}
               </h3>
             </div>
           </div>
 
           <div className="text-center mt-12">
             <p className="text-lg font-medium text-gray-800 mb-8">
-              Y finalmente hablar español, no solo estudiarlo
+              {t("why.speak.spanish") || "Y finalmente hablar español, no solo estudiarlo"}
             </p>
             <div className="text-2xl mb-6">🚀</div>
           </div>
@@ -213,7 +219,7 @@ export default function SpanishLandingPage() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Miles de estudiantes ya confían en Learn Academy
+            {t("testimonials.title.spanish") || "Miles de estudiantes ya confían en Learn Academy"}
           </h2>
 
           <div className="relative">
@@ -252,17 +258,17 @@ export default function SpanishLandingPage() {
       <section className="py-20 bg-gradient-to-r from-red-600 to-red-500">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-6">
-            Comienza tu viaje ahora
+            {t("cta.title.spanish") || "Comienza tu viaje ahora"}
           </h2>
           <p className="text-xl mb-8 text-red-100">
-            Únete hoy y obtén tu clase de prueba gratuita.
+            {t("cta.subtitle.spanish") || "Únete hoy y obtén tu clase de prueba gratuita."}
           </p>
 
           <button
             onClick={handleWhatsAppClick}
             className="px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl bg-yellow-100 text-red-700 hover:bg-yellow-200"
           >
-            👉 Comenzar Mi Clase Gratuita
+            👉 {t("hero.cta.spanish") || "Comenzar Mi Clase Gratuita"}
           </button>
         </div>
       </section>

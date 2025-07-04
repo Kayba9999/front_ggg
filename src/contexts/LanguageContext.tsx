@@ -793,10 +793,11 @@ const translations: Translations = {
     en: "For demo login: admin@example.com / admin123",
     es: "Para inicio de sesión de demostración: admin@example.com / admin123",
   },
+  // Landing Page Specific Translations
   "hero.titlet": {
     ar: "تحدث الإنجليزية بثقة",
     en: "Speak English with confidence",
-    es: "Habla inglés con confianza",
+    es: "Habla español con confianza",
   },
   "hero.subtitle": {
     ar: "ابتداءً من فصلك الأول",
@@ -806,7 +807,7 @@ const translations: Translations = {
   "hero.description": {
     ar: "في Learn Academy، نساعدك على التحدث بالإنجليزية في محادثات حقيقية، وليس مجرد حفظ القواعد.",
     en: "At Learn Academy, we help you speak English in real conversations, not just memorize grammar.",
-    es: "En Learn Academy, te ayudamos a hablar inglés en conversaciones reales, no solo memorizar gramática.",
+    es: "En Learn Academy, te ayudamos a hablar español en conversaciones reales, no solo memorizar gramática.",
   },
   "hero.cta": {
     ar: "ابدأ فصلي المجاني",
@@ -821,7 +822,7 @@ const translations: Translations = {
   "features.teachers": {
     ar: "دروس مباشرة مع مدرسين معتمدين يتحدثون الإنجليزية",
     en: "Live lessons with certified English-speaking teachers",
-    es: "Clases en vivo con profesores certificados de habla inglesa",
+    es: "Clases en vivo con profesores certificados de habla hispana",
   },
   "features.method": {
     ar: "طريقة عملية تركز على التحدث والاستماع",
@@ -831,7 +832,7 @@ const translations: Translations = {
   "features.schedules": {
     ar: "جدول مرن – تعلم في أي وقت، في أي مكان",
     en: "Flexible schedule – learn anytime, anywhere",
-    es: "Horario flexible – aprende en cualquier momento, en cualquier lugar",
+    es: "Horario flexible – aprende cuando quieras, donde quieras",
   },
   "features.trial": {
     ar: "الفصل الأول مجاناً – بدون التزام!",
@@ -851,7 +852,7 @@ const translations: Translations = {
   "why.interviews": {
     ar: "كن واثقاً في المقابلات والاجتماعات",
     en: "Be confident in interviews and meetings",
-    es: "Ser confiado en entrevistas y reuniones",
+    es: "Tener confianza en entrevistas y reuniones",
   },
   "why.travel": {
     ar: "سافر وتحدث بدون خوف",
@@ -866,7 +867,7 @@ const translations: Translations = {
   "why.speak": {
     ar: "وأخيراً تحدث الإنجليزية، وليس مجرد دراستها",
     en: "And finally speak English, not just study it",
-    es: "Y finalmente hablar inglés, no solo estudiarlo",
+    es: "Y finalmente hablar español, no solo estudiarlo",
   },
   "testimonials.titlet": {
     ar: "آلاف المتعلمين يثقون بالفعل في Learn Academy",
@@ -894,11 +895,6 @@ const translations: Translations = {
     es: "Especializaciones",
   },
   // Teacher Detail Page
-  "teacher.specializations": {
-    ar: "التخصصات",
-    en: "Specializations",
-    es: "Especializaciones",
-  },
   "teacher.qualification": {
     ar: "التأهيل العلمي",
     en: "Qualification",
@@ -932,7 +928,7 @@ const translations: Translations = {
   "hero.badge": {
     ar: "تعلم الإنجليزية بسهولة",
     en: "English Learning Made Simple",
-    es: "Aprender inglés de manera simple",
+    es: "Aprender español de manera simple",
   },
   "features.trial.description": {
     ar: "جرب قبل أن تلتزم بأي شيء",
@@ -953,6 +949,164 @@ const translations: Translations = {
     ar: "تعلم من متحدثين أصليين ذوي خبرة",
     en: "Learn from experienced native speakers",
     es: "Aprende de hablantes nativos experimentados",
+  },
+  // Spanish specific translations
+  "hero.title.spanish": {
+    ar: "تحدث الإسبانية بثقة",
+    en: "Speak Spanish with confidence",
+    es: "Habla español con confianza",
+  },
+  "hero.subtitle.spanish": {
+    ar: "ابتداءً من فصلك الأول",
+    en: "Starting from your very first class",
+    es: "Desde tu primera clase",
+  },
+  "hero.description.spanish": {
+    ar: "في Learn Academy، نساعدك على التحدث بالإسبانية في محادثات حقيقية، وليس مجرد حفظ القواعد.",
+    en: "At Learn Academy, we help you speak Spanish in real conversations, not just memorize grammar.",
+    es: "En Learn Academy, te ayudamos a hablar español en conversaciones reales, no solo memorizar gramática.",
+  },
+  "hero.cta.spanish": {
+    ar: "ابدأ فصلي المجاني",
+    en: "Start My Free Class",
+    es: "Comenzar Mi Clase Gratuita",
+  },
+  "hero.badge.spanish": {
+    ar: "تعلم الإسبانية بسهولة",
+    en: "Spanish Learning Made Simple",
+    es: "Aprender español de manera simple",
+  },
+  "features.title.spanish": {
+    ar: "ما تحصل عليه:",
+    en: "What you get:",
+    es: "Lo que obtienes:",
+  },
+  "features.teachers.spanish": {
+    ar: "دروس مباشرة مع مدرسين معتمدين يتحدثون الإسبانية",
+    en: "Live lessons with certified Spanish-speaking teachers",
+    es: "Clases en vivo con profesores certificados de habla hispana",
+  },
+  "features.method.spanish": {
+    ar: "طريقة عملية تركز على التحدث والاستماع",
+    en: "Practical method focused on speaking & listening",
+    es: "Método práctico enfocado en hablar y escuchar",
+  },
+  "features.schedules.spanish": {
+    ar: "جدول مرن – تعلم في أي وقت، في أي مكان",
+    en: "Flexible schedule – learn anytime, anywhere",
+    es: "Horario flexible – aprende cuando quieras, donde quieras",
+  },
+  "features.trial.spanish": {
+    ar: "الفصل الأول مجاناً – بدون التزام!",
+    en: "First class FREE – no commitment!",
+    es: "¡Primera clase GRATIS – sin compromiso!",
+  },
+  "features.teachers.description.spanish": {
+    ar: "تعلم من متحدثين أصليين ذوي خبرة",
+    en: "Learn from experienced native speakers",
+    es: "Aprende de hablantes nativos experimentados",
+  },
+  "features.method.description.spanish": {
+    ar: "محادثات حقيقية، وليس مجرد تمارين قواعد",
+    en: "Real conversations, not just grammar drills",
+    es: "Conversaciones reales, no solo ejercicios de gramática",
+  },
+  "features.schedule.description.spanish": {
+    ar: "اجعل التعلم يتناسب مع نمط حياتك المزدحم",
+    en: "Fit learning into your busy lifestyle",
+    es: "Adapta el aprendizaje a tu estilo de vida ocupado",
+  },
+  "features.trial.description.spanish": {
+    ar: "جرب قبل أن تلتزم بأي شيء",
+    en: "Try before you commit to anything",
+    es: "Prueba antes de comprometerte con algo",
+  },
+  "why.title.spanish": {
+    ar: "لماذا تختار Learn Academy؟",
+    en: "Why choose Learn Academy?",
+    es: "¿Por qué elegir Learn Academy?",
+  },
+  "why.subtitle.spanish": {
+    ar: "لأنك تستحق أن:",
+    en: "Because you deserve to:",
+    es: "Porque mereces:",
+  },
+  "why.interviews.spanish": {
+    ar: "كن واثقاً في المقابلات والاجتماعات",
+    en: "Be confident in interviews and meetings",
+    es: "Tener confianza en entrevistas y reuniones",
+  },
+  "why.travel.spanish": {
+    ar: "سافر وتحدث بدون خوف",
+    en: "Travel and speak without fear",
+    es: "Viajar y hablar sin miedo",
+  },
+  "why.opportunities.spanish": {
+    ar: "ادرس وانمِ فرصك",
+    en: "Study and grow your opportunities",
+    es: "Estudiar y hacer crecer tus oportunidades",
+  },
+  "why.speak.spanish": {
+    ar: "وأخيراً تحدث الإسبانية، وليس مجرد دراستها",
+    en: "And finally speak Spanish, not just study it",
+    es: "Y finalmente hablar español, no solo estudiarlo",
+  },
+  "testimonials.title.spanish": {
+    ar: "آلاف المتعلمين يثقون بالفعل في Learn Academy",
+    en: "Thousands of learners already trust Learn Academy",
+    es: "Miles de estudiantes ya confían en Learn Academy",
+  },
+  "cta.title.spanish": {
+    ar: "ابدأ رحلتك الآن",
+    en: "Start your journey now",
+    es: "Comienza tu viaje ahora",
+  },
+  "cta.subtitle.spanish": {
+    ar: "انضم اليوم واحصل على فصل تجريبي مجاني.",
+    en: "Join today and get your free trial class.",
+    es: "Únete hoy y obtén tu clase de prueba gratuita.",
+  },
+  // WhatsApp messages for different languages
+  "whatsapp.english.message": {
+    ar: "مرحباً! أنا مهتم ببدء فصل الإنجليزية المجاني مع Learn Academy. هل يمكنكم مساعدتي في البدء؟",
+    en: "Hi! I'm interested in starting my free English class with Learn Academy. Can you help me get started?",
+    es: "¡Hola! Estoy interesado en comenzar mi clase gratuita de inglés con Learn Academy. ¿Pueden ayudarme a empezar?",
+  },
+  "whatsapp.spanish.message": {
+    ar: "مرحباً! أنا مهتم ببدء فصل الإسبانية المجاني مع Learn Academy. هل يمكنكم مساعدتي في البدء؟",
+    en: "Hi! I'm interested in starting my free Spanish class with Learn Academy. Can you help me get started?",
+    es: "¡Hola! Estoy interesado en comenzar mi clase gratuita de español con Learn Academy. ¿Pueden ayudarme a empezar?",
+  },
+  // Testimonials for different languages
+  "testimonials.english.maria": {
+    ar: "حصلت على وظيفة أحلامي بعد 3 أشهر فقط مع Learn Academy!",
+    en: "I got my dream job after just 3 months with Learn Academy!",
+    es: "¡Conseguí el trabajo de mis sueños después de solo 3 meses con Learn Academy!",
+  },
+  "testimonials.english.ahmed": {
+    ar: "أخيراً أصبحت واثقاً من التحدث بالإنجليزية في الاجتماعات. أساتذة رائعون!",
+    en: "Finally confident speaking English in meetings. Amazing teachers!",
+    es: "Finalmente tengo confianza hablando inglés en reuniones. ¡Profesores increíbles!",
+  },
+  "testimonials.english.li": {
+    ar: "الجدول المرن يتناسب تماماً مع حياتي المزدحمة. أنصح به بشدة!",
+    en: "The flexible schedule fits perfectly with my busy life. Highly recommend!",
+    es: "El horario flexible se adapta perfectamente a mi vida ocupada. ¡Lo recomiendo mucho!",
+  },
+  "testimonials.spanish.carlos": {
+    ar: "حصلت على وظيفة أحلامي بعد 3 أشهر فقط مع Learn Academy!",
+    en: "I got my dream job after just 3 months with Learn Academy!",
+    es: "¡Conseguí el trabajo de mis sueños después de solo 3 meses con Learn Academy!",
+  },
+  "testimonials.spanish.fatima": {
+    ar: "أخيراً أصبحت واثقة من التحدث بالإسبانية في الاجتماعات. أساتذة رائعون!",
+    en: "Finally confident speaking Spanish in meetings. Amazing teachers!",
+    es: "Finalmente tengo confianza hablando español en reuniones. ¡Profesores increíbles!",
+  },
+  "testimonials.spanish.john": {
+    ar: "الجدول المرن يتناسب تماماً مع حياتي المزدحمة. أنصح به بشدة!",
+    en: "The flexible schedule fits perfectly with my busy life. Highly recommend!",
+    es: "El horario flexible se adapta perfectamente a mi vida ocupada. ¡Lo recomiendo mucho!",
   },
 };
 
